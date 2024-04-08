@@ -16,20 +16,19 @@ function handleDragOver(event) {
 }
 
 function handleDrop(event) {
-  event.preventDefault();
-  const draggedId = event.dataTransfer.getData("text/plain");
-  const droppedId = event.target.id;
+	event.preventDefault();
+	const draggedId = event.dataTransfer.getData("text/plain");
+	const droppedId = event.target.id;
 
-  const draggedElement = document.getElementById(draggedId);
-  const droppedElement = document.getElementById(droppedId);
+	const draggedElement = document.getElementById(draggedId);
+	const droppedElement = document.getElementById(droppedId);
 
+	draggedElement.id = droppedId;
+	droppedElement.id = draggedId;
 
-  if (draggedElement && droppedElement) {
-    const tempBgImage = draggedElement.style.backgroundImage;
-    draggedElement.style.backgroundImage = droppedElement.style.backgroundImage;
-    droppedElement.style.backgroundImage = tempBgImage;
-
-    draggedElement.id = droppedId;
-    droppedElement.id = draggedId;
-  }
+	let tempText = draggedElement.innerText
+	draggedElement.innerText = droppedElement.innerText
+	droppedElement.innerText = tempText
+	
+	
 }
